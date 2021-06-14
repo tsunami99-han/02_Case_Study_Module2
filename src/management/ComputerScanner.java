@@ -47,8 +47,8 @@ public class ComputerScanner {
             } else {
                 System.out.println("Đã hủy thao tác!");
             }
-        }else {
-            System.out.println("Mã không tồn tại!");
+        } else {
+            System.out.println("ID không tồn tại!");
         }
     }
 
@@ -66,7 +66,7 @@ public class ComputerScanner {
     }
 
     public Computer creat(HashMap<Integer, Computer> hashMap) {
-        System.out.println("Nhập mã máy: ");
+        System.out.println("Nhập ID máy: ");
         int id = inputInt();
         System.out.println("Nhập tên máy :");
         String name;
@@ -95,9 +95,10 @@ public class ComputerScanner {
         int pricePerHour = inputInt();
         hashMap.get(id).setPricePerHour(pricePerHour);
     }
-    public void edit(int id, HashMap<Integer, Computer> hashMap){
-        editName(id,hashMap);
-        editPricePerHour(id,hashMap);
+
+    public void edit(int id, HashMap<Integer, Computer> hashMap) {
+        editName(id, hashMap);
+        editPricePerHour(id, hashMap);
     }
 
     public void serviceUse(int id, HashMap<Integer, Computer> hashMap) {
@@ -121,7 +122,7 @@ public class ComputerScanner {
         if (hashMap.get(id).isStatus() == true) {
             hashMap.get(id).setStatus(false);
             System.out.println("Đã tắt máy!");
-        }else {
+        } else {
             System.out.println("Máy đang tắt!");
         }
     }
@@ -129,7 +130,7 @@ public class ComputerScanner {
 
     public void addService(int idComputer, HashMap<Integer, Computer> hashMap, HashMap<Integer, Service> serviceHashMap) {
         serviceControl.display(serviceHashMap);
-        System.out.println("Nhập mã dịch vụ :");
+        System.out.println("Nhập ID dịch vụ :");
         int id = 0;
         boolean result = false;
         while (result == false) {
@@ -147,36 +148,44 @@ public class ComputerScanner {
         System.out.println("Thêm thành công!");
     }
 
-    public int payments(int id,HashMap<Integer, Computer> hashMap) {
-        List<Service> list=hashMap.get(id).getList();
-        long money=hashMap.get(id).getPayments();
-        hashMap.get(id).setEndTimeUse(System.currentTimeMillis());
-        int priceBytime=(int)((hashMap.get(id).getEndTimeUse()-hashMap.get(id).getStartTimeUse()))/3600000*hashMap.get(id).getPricePerHour();
-        if (priceBytime%1000>=500){
-            priceBytime+=(1000-priceBytime%1000);
+    public int payments(int id, HashMap<Integer, Computer> hashMap) {
+        if (hashMap.get(id).isStatus() == true) {
+            List<Service> list = hashMap.get(id).getList();
+            long money = hashMap.get(id).getPayments();
+            hashMap.get(id).setEndTimeUse(System.currentTimeMillis());
+            int priceBytime = (int) ((hashMap.get(id).getEndTimeUse() - hashMap.get(id).getStartTimeUse())) / 3600000 * hashMap.get(id).getPricePerHour();
+            if (priceBytime % 1000 >= 500) {
+                priceBytime += (1000 - priceBytime % 1000);
+            } else {
+                priceBytime -= (priceBytime % 1000);
+            }
+            money += priceBytime;
+            hashMap.get(id).setPayments(0);
+            hashMap.get(id).setStartTimeUse(0);
+            hashMap.get(id).setEndTimeUse(0);
+            hashMap.get(id).setStatus(false);
+            hashMap.get(id).setList(new ArrayList<>());
+            return (int) money;
         }else {
-            priceBytime-=(priceBytime%1000);
+            return 0;
         }
-        money+=priceBytime;
-        hashMap.get(id).setPayments(0);
-        hashMap.get(id).setStartTimeUse(0);
-        hashMap.get(id).setEndTimeUse(0);
-        hashMap.get(id).setStatus(false);
-        hashMap.get(id).setList(new ArrayList<>());
-        return (int) money;
     }
-    public void displayON(HashMap<Integer, Computer> hashMap){
+
+    public void displayON(HashMap<Integer, Computer> hashMap) {
         Set<Integer> keys = hashMap.keySet();
-        for (int key:keys){
-            if (hashMap.get(key).isStatus()==true){
+        for (int key : keys) {
+            if (hashMap.get(key).isStatus() == true) {
                 System.out.println(hashMap.get(key).toString());
-            }        }
+            }
+        }
     }
-    public void displayOFF(HashMap<Integer, Computer> hashMap){
+
+    public void displayOFF(HashMap<Integer, Computer> hashMap) {
         Set<Integer> keys = hashMap.keySet();
-        for (int key:keys){
-            if (hashMap.get(key).isStatus()==false){
+        for (int key : keys) {
+            if (hashMap.get(key).isStatus() == false) {
                 System.out.println(hashMap.get(key).toString());
-            }        }
+            }
+        }
     }
 }

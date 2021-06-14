@@ -44,6 +44,8 @@ public class ServiceScanner {
             } else {
                 System.out.println("Đã hủy việc xóa!");
             }
+        }else {
+            System.out.println("ID không tồn tại!");
         }
     }
 

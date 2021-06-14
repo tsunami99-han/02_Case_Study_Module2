@@ -53,8 +53,8 @@ public class Service implements Serializable {
 
     @Override
     public String toString() {
-        return "Mã: " + id +
-                " Tên sản phẩm" + serviceName+
+        return "Mã " + id +
+                " Tên sản phẩm " + serviceName+
                 " Gía sản phẩm " + servicePrices +
                 " Số lượng " + amount ;
     }

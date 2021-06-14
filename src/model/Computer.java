@@ -105,12 +105,12 @@ public class Computer implements Serializable {
     @Override
     public String toString() {
         if (this.status == false) {
-            return "Mã " +this.id + "   Trạng thái máy"+this.name + " đang tắt " + this.pricePerHour + "/1h.";
+            return "Mã: " +this.id + "   Trạng thái: "+this.name + " đang tắt " + " Gía: "+this.pricePerHour + "/1h.";
         } else {
             long timeNow = System.currentTimeMillis();
             long hour = (timeNow - this.startTimeUse) / 3600000;
             long munite=(timeNow - this.startTimeUse)%3600000/60000;
-            return "Mã " +this.id + "   Trạng thái máy "+ this.name + " đang sử dụng, Thời gian sử dụng : "+hour+"h "+munite + "m  " +"Tiền dịch vụ :"+ this.pricePerHour + "/1h." ;
+            return "Mã: " +this.id + "   Trạng thái: "+ this.name + " đang sử dụng, Thời gian sử dụng: "+hour+"h "+munite + "m  " +"Tiền dịch vụ:"+this.getPayments()+" Gía: " +this.pricePerHour + "/1h." ;
         }
     }
 }

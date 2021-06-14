@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IORevenue {
-    public static final String PATH = "D:\\02_Module2\\Case_Study_Module2\\src\\filecsv\\revenue.csv";
-
+    public static final String PATH_CSV = "D:\\02_Module2\\Case_Study_Module2\\src\\filecsv\\revenue.csv";
+public static final String PATH_DAT="D:\\02_Module2\\Case_Study_Module2\\src\\filedata\\revenue.dat";
     public void writeCSV(String path, List<Revenue> revenues) throws IOException {
         FileWriter fileWriter = new FileWriter(path);
         BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -22,10 +22,10 @@ public class IORevenue {
         fileWriter.close();
     }
 
-    public void writeData(String path, List<Revenue> revenues)  {
+    public static void writeData(String path, List<Revenue> revenues)  {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(path);
-            ObjectOutputStream objectOutputStream=new ObjectOutputStream((OutputStream) revenues);
+            ObjectOutputStream objectOutputStream=new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(revenues);
             objectOutputStream.close();
             fileOutputStream.close();
@@ -34,7 +34,7 @@ public class IORevenue {
         }
 
     }
-    public List<Revenue> readData(String path){
+    public static List<Revenue> readData(String path){
         List<Revenue> list;
         try {
             FileInputStream fileInputStream=new FileInputStream(path);

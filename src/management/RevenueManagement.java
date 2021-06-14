@@ -9,11 +9,11 @@ import java.util.List;
 
 public class RevenueManagement {
     List<Revenue> revenues;
-    IORevenue ioRevenu=new IORevenue();
+
     public static final RevenueManagement revenueManagement = new RevenueManagement();
 
     public RevenueManagement() {
-        this.revenues = ioRevenu.readData(IORevenue.PATH);
+        this.revenues = IORevenue.readData(IORevenue.PATH_CSV);
     }
 
     public static RevenueManagement getInstance() {

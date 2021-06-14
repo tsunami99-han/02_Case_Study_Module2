@@ -11,7 +11,7 @@ public class ComputerManagement implements GeneralManagement<Computer> {
     HashMap<String, AccountAdmin> adminHashMap;
     public static final ComputerManagement managerCyber = new ComputerManagement();
     ComputerScanner computerScanner = new ComputerScanner();
-    IOComputer ioComputer = new IOComputer();
+
 
     public ComputerScanner getComputerScanner() {
         return computerScanner;
@@ -38,7 +38,7 @@ public class ComputerManagement implements GeneralManagement<Computer> {
     }
 
     public ComputerManagement() {
-        this.hashMap =ioComputer.read(IOComputer.PATH);
+        this.hashMap =IOComputer.read(IOComputer.PATH);
         this.adminHashMap = new HashMap<>();
         adminHashMap.put("tsunami", new AccountAdmin("tsunami", "darkstar99"));
         adminHashMap.put("admin", new AccountAdmin("admin", "admin"));

@@ -30,6 +30,6 @@ public class AccountAdmin {
 
     @Override
     public String toString() {
-        return "Tài khoản " + getUserName() + "Mật khẩu : **********";
+        return "Tài khoản " + getUserName() + "  Mật khẩu : **********";
     }
 }

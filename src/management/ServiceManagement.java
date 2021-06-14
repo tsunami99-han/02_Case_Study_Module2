@@ -9,16 +9,15 @@ import java.util.*;
 import static iofile.IOService.PATH;
 
 public class ServiceManagement implements GeneralManagement<Service> {
-    IOService ioService=new IOService();
     HashMap<Integer, Service> hashMapService;
     public static final ServiceManagement serviceManagement = new ServiceManagement();
     ServiceScanner scannerService = new ServiceScanner();
 
     public ServiceManagement() {
         try {
-            this.hashMapService = ioService.read(PATH);
+            this.hashMapService = IOService.read(PATH);
         } catch (IOException e) {
-            this.hashMapService=new HashMap<>();
+            this.hashMapService=new HashMap<Integer, Service>();
         }
     }
 
