@@ -1,6 +1,9 @@
+package model;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Revenue {
+public class Revenue implements Serializable {
     private long amountOfMoney;
     private LocalDate time;
     private String userAdmin;
@@ -36,5 +39,12 @@ public class Revenue {
 
     public void setUserAdmin(String userAdmin) {
         this.userAdmin = userAdmin;
+    }
+
+    @Override
+    public String toString() {
+        return "Số tiền " + amountOfMoney +
+                " Ngày " + time +
+                " Người quản lý " + userAdmin ;
     }
 }

@@ -1,3 +1,5 @@
+package model;
+
 public class AccountAdmin {
     private String userName;
     private String password;
@@ -24,5 +26,10 @@ public class AccountAdmin {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Tài khoản " + getUserName() + "Mật khẩu : **********";
     }
 }
